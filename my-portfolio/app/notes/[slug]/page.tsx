@@ -1,46 +1,37 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
-import remarkSlug from "remark-slug";
-import remarkToc from "remark-toc";
-import Link from "next/link";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeToc from "rehype-toc";
+import rehypeStringify from "rehype-stringify";
 
-interface NotePageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export default async function NotePage(props: NotePageProps) {
-  const { slug } = await props.params; // ✅ FIX: await params
+export default async function NotePage(
+  props: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await props.params; // ✅ unwrap params
 
   const notesDir = path.join(process.cwd(), "content/notes");
   const filePath = path.join(notesDir, `${slug}.md`);
   const fileContent = fs.readFileSync(filePath, "utf8");
 
-  const { data, content } = matter(fileContent);
+  const { content } = matter(fileContent);
 
-  const processedContent = await remark()
-    .use(remarkSlug)
-    .use(remarkToc, { heading: "Table of Contents" })
-    .use(html)
+  const htmlContent = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeSlug)
+    .use(rehypeAutolinkHeadings, { behavior: "wrap" })
+    .use(rehypeToc, { headings: ["h2", "h3"], cssClasses: { toc: "toc" }})
+    .use(rehypeStringify)
     .process(content);
 
-  const htmlContent = processedContent.toString();
-
   return (
-    <div className="max-w-3xl mx-auto py-12 mt-12">
-      <Link href="/notes" className="text-sm text-gray-400 hover:text-gray-200">
-        ← Back to Notes
-      </Link>
-
-      <h1 className="text-3xl font-bold mt-4">{data.title}</h1>
-      <p className="text-gray-400 text-sm mt-1">{data.date}</p>
-
-      <article
-        className="prose prose-invert mt-8"
-        dangerouslySetInnerHTML={{ __html: htmlContent }}
-      />
+    <div className="mx-auto max-w-3xl py-12 prose dark:prose-invert">
+      <article dangerouslySetInnerHTML={{ __html: String(htmlContent) }} />
     </div>
   );
 }
