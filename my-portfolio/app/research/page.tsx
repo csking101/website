@@ -1,4 +1,3 @@
-// app/research/page.tsx
 import ResearchCard from "@/components/research-card";
 
 const research = [
@@ -36,20 +35,37 @@ const research = [
 
 export default function ResearchPage() {
   return (
-    <main className="px-6 md:px-16 py-24 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl font-bold text-gray-900 mb-4">
-        Research & Publications
-      </h1>
-      <p className="text-gray-600 max-w-2xl mb-12">
-        Academic research work focusing on deep learning for healthcare,
-        segmentation, classification, and model efficiency.
-      </p>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="container mx-auto px-4 pt-24 pb-20">
+        {/* Header */}
+        <div className="mx-auto mb-12 flex-col items-center text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Research
+          </h1>
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+            My adventures in pushing the boundaries of technology through
+            experiments.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {research.map((paper, index) => (
-          <ResearchCard key={index} {...paper} />
-        ))}
+        {/* Research Cards Grid */}
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {research.map((paper, index) => (
+            <ResearchCard key={index} {...paper} />
+          ))}
+        </div>
+
+        {/* Empty State (just in case) */}
+        {research.length === 0 && (
+          <div className="max-w-2xl mx-auto text-center py-20">
+            <div className="text-6xl mb-4">🔬</div>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+              No publications yet
+            </h3>
+            <p className="text-gray-600">More research updates coming soon.</p>
+          </div>
+        )}
       </div>
-    </main>
+    </div>
   );
 }
