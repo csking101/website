@@ -62,7 +62,7 @@ export default function BlogsPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="container mx-auto px-4 pt-24 pb-20">
         {/* Header */}
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className=" mx-auto mb-12 flex-col items-center text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Thoughts
           </h1>
