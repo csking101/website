@@ -5,17 +5,14 @@ export default function Home() {
       <section className="container mx-auto px-4 pt-32 pb-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Name */}
-          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-slate-100 dark:to-slate-300 mb-6 tracking-tight">
-            Your Name
+          <h1 className="text-5xl md:text-7xl font-bold mb-12">
+            Chinmaya Sahu
           </h1>
           
           {/* Description */}
-          <div className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 space-y-4 mb-12 leading-relaxed">
+          <div className="text-m md:text-2xl text-slate-600 dark:text-slate-400 mb-12 leading-relaxed ">
             <p>
-              I build innovative solutions at the intersection of technology and creativity.
-            </p>
-            <p>
-              Currently exploring machine learning, web development, and everything in between.
+              Exploring cloud, machine learning, web development, and everything in between.
             </p>
           </div>
 

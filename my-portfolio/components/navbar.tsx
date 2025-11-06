@@ -1,18 +1,19 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Thoughts', href: '/blogs' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Research', href: '/research' },
-    { name: 'Notes', href: '/notes' },
-    { name: 'Travel', href: '/travel' },
+    { name: "Home", href: "/" },
+    { name: "Thoughts", href: "/blogs" },
+    { name: "Projects", href: "/projects" },
+    { name: "Research", href: "/research" },
+    { name: "Notes", href: "/notes" },
+    { name: "Travel", href: "/travel" },
   ];
 
   return (
@@ -20,11 +21,17 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Name */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="text-xl font-bold text-slate-900 dark:text-slate-100 hover:opacity-80 transition-opacity"
           >
-            CS
+            <Image
+              src="/icon.png"
+              alt="Logo"
+              width={40}
+              height={40}
+              // className="inline-block mr-2 mb-1"
+            />
           </Link>
 
           {/* Desktop Navigation */}
