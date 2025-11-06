@@ -3,7 +3,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Hero Section */}
       <section className="container mx-auto px-4 pt-32 pb-20">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
           {/* Name */}
           <h1 className="text-5xl md:text-7xl font-bold mb-12">
             Chinmaya Sahu
