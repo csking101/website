@@ -96,7 +96,7 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="container mx-auto px-4 pt-24 pb-20">
         {/* Header */}
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className=" mx-auto mb-12 flex-col items-center text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Projects & Hackathons
           </h1>
@@ -107,7 +107,7 @@ export default function ProjectsPage() {
 
         {/* Tabs */}
         <div className="max-w-6xl mx-auto mb-8">
-          <div className="flex gap-4 border-b border-gray-200">
+          <div className="flex gap-4 border-b border-gray-200 justify-center">
             <button
               onClick={() => setActiveTab('projects')}
               className={`px-6 py-3 font-medium transition-colors relative ${
