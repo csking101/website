@@ -12,10 +12,10 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeStringify from "rehype-stringify";
 import ContentDisplay from "@/components/content-display";
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
+export default async function ResearchPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
-  const blogsDir = path.join(process.cwd(), "content/blogs");
-  const filePath = path.join(blogsDir, `${slug}.md`);
+  const researchDir = path.join(process.cwd(), "content/research");
+  const filePath = path.join(researchDir, `${slug}.md`);
 
   if (!fs.existsSync(filePath)) return notFound();
 
@@ -41,8 +41,8 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     <ContentDisplay
       htmlContent={html}
       metadata={data}
-      type="thoughts"
-      backLink={{ href: "/blogs", label: "Back to Thoughts" }}
+      type="research"
+      backLink={{ href: "/research", label: "Back to Research" }}
       slug={slug}
     />
   );
