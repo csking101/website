@@ -87,109 +87,188 @@ export default function ContentDisplay({
 
         {/* Content */}
         <style>{`
-          .content-markdown h1 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-            color: #111827;
-          }
-          .content-markdown h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            margin-top: 1.5rem;
-            margin-bottom: 0.875rem;
-            color: #1f2937;
-          }
-          .content-markdown h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-top: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: #374151;
-          }
-          .content-markdown h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-            color: #374151;
-          }
-          .content-markdown p {
+          .content-markdown {
             font-size: 1rem;
             line-height: 1.75;
-            margin-bottom: 1rem;
             color: #1f2937;
+            word-wrap: break-word;
           }
+
+          /* Headings (no section breaks / borders) */
+          .content-markdown h1,
+          .content-markdown h2,
+          .content-markdown h3,
+          .content-markdown h4 {
+            scroll-margin-top: 6rem;
+            position: relative;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+          }
+          .content-markdown h1 {
+            font-size: 2.4rem;
+            margin-top: 2.4rem;
+            margin-bottom: 1.15rem;
+            color: #0f172a;
+          }
+          .content-markdown h2 {
+            font-size: 1.9rem;
+            margin-top: 2rem;
+            margin-bottom: 0.9rem;
+            color: #1e293b;
+          }
+          .content-markdown h3 {
+            font-size: 1.4rem;
+            margin-top: 1.6rem;
+            margin-bottom: 0.7rem;
+            color: #334155;
+          }
+          .content-markdown h4 {
+            font-size: 1.15rem;
+            margin-top: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #475569;
+          }
+
+          /* Prevent autolink wrapped headings from changing color */
+          .content-markdown h1 a,
+          .content-markdown h2 a,
+          .content-markdown h3 a,
+          .content-markdown h4 a {
+            color: inherit;
+            text-decoration: none;
+          }
+          .content-markdown h1 a:hover,
+          .content-markdown h2 a:hover,
+          .content-markdown h3 a:hover,
+          .content-markdown h4 a:hover {
+            opacity: .8;
+          }
+
+          /* Paragraphs & lists */
+          .content-markdown p { margin-bottom: 1.05rem; }
           .content-markdown ul,
           .content-markdown ol {
-            margin-bottom: 1rem;
-            margin-left: 1.5rem;
+            margin-bottom: 1.15rem;
+            margin-left: 1.4rem;
+            padding-left: .25rem;
           }
-          .content-markdown li {
-            margin-bottom: 0.5rem;
-            color: #1f2937;
-          }
-          .content-markdown strong {
-            font-weight: 700;
-          }
-          .content-markdown em {
-            font-style: italic;
-          }
-          .content-markdown code {
-            background-color: #f3f4f6;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-family: monospace;
-            font-size: 0.875rem;
-          }
-          .content-markdown pre {
-            background-color: #1f2937;
-            color: #f3f4f6;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-            margin-bottom: 1rem;
-          }
-          .content-markdown pre code {
-            background-color: transparent;
-            padding: 0;
-            color: inherit;
-          }
+          .content-markdown li { margin-bottom: .45rem; }
+          .content-markdown ul li::marker { color: #64748b; }
+          .content-markdown ol li::marker { color: #64748b; font-weight: 600; }
+
+          /* Inline elements */
+          .content-markdown strong { font-weight: 600; color: #0f172a; }
+          .content-markdown em { font-style: italic; }
+
+          /* Links */
           .content-markdown a {
-            color: #2563eb;
-            text-decoration: underline;
+            color: #0d66d9;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(13,102,217,0.3);
+            transition: color .15s, border-color .15s;
           }
           .content-markdown a:hover {
-            color: #1d4ed8;
+            color: #004ea8;
+            border-color: rgba(0,78,168,0.5);
           }
+
+          /* Code */
+          .content-markdown code {
+            background: #f1f5f9;
+            padding: 0.25rem 0.45rem;
+            border-radius: 0.35rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            font-size: 0.85rem;
+            border: 1px solid #e2e8f0;
+          }
+          .content-markdown pre {
+            background: linear-gradient(135deg,#0f172a,#1e293b);
+            color: #f1f5f9;
+            padding: 1.05rem 1.15rem;
+            border-radius: 0.7rem;
+            overflow-x: auto;
+            margin: 1.35rem 0;
+            font-size: 0.9rem;
+            box-shadow: inset 0 0 0 1px #334155,0 4px 12px -2px rgba(15,23,42,0.35);
+          }
+          .content-markdown pre code {
+            background: transparent;
+            padding: 0;
+            border: 0;
+            font-size: inherit;
+            color: inherit;
+          }
+
+          /* Blockquote */
           .content-markdown blockquote {
-            border-left: 4px solid #d1d5db;
-            padding-left: 1rem;
-            margin-left: 0;
-            margin-bottom: 1rem;
-            color: #6b7280;
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            padding: 0.85rem 1.1rem;
+            margin: 1.3rem 0;
+            color: #475569;
+            border-radius: 0 0.5rem 0.5rem 0;
+            position: relative;
           }
+          .content-markdown blockquote p:last-child { margin-bottom: 0; }
+
+          /* Remove section-break style from hr (make subtle or unused) */
+          .content-markdown hr {
+            margin: 2rem 0;
+            border: 0;
+            height: 1px;
+            background: #e5e7eb;
+          }
+
+          /* Tables */
           .content-markdown table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 1rem;
+            margin: 1.35rem 0;
+            font-size: 0.9rem;
           }
           .content-markdown th,
           .content-markdown td {
-            border: 1px solid #d1d5db;
-            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            padding: 0.55rem 0.7rem;
             text-align: left;
+            vertical-align: top;
           }
           .content-markdown th {
-            background-color: #f3f4f6;
+            background: #f1f5f9;
             font-weight: 600;
+            color: #0f172a;
           }
+          .content-markdown tbody tr:nth-child(odd) td { background: #fafafa; }
+
+          /* Images */
           .content-markdown img {
             max-width: 100%;
             height: auto;
+            border-radius: 0.7rem;
+            margin: 1.15rem auto;
+            display: block;
+            box-shadow: 0 4px 18px -4px rgba(0,0,0,0.18);
+          }
+
+          /* First child spacing */
+          .content-markdown > :first-child { margin-top: 0; }
+
+          /* Callouts */
+          .content-markdown .callout {
+            padding: 0.95rem 1.05rem;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            border-left: 4px solid #0d66d9;
             border-radius: 0.5rem;
-            margin: 1rem 0;
+            margin: 1.4rem 0;
+          }
+
+          /* Responsive */
+          @media (max-width: 640px) {
+            .content-markdown h1 { font-size: 2rem; }
+            .content-markdown h2 { font-size: 1.55rem; }
+            .content-markdown h3 { font-size: 1.25rem; }
           }
         `}</style>
         <article
