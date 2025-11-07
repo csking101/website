@@ -8,7 +8,14 @@ export interface ContentMetadata {
   tags?: string[];
   days?: string;
   location?: string;
-  [key: string]: string | string[] | undefined;
+  technologies?: string[];
+  github?: string;
+  demo?: string;
+  featured?: boolean;
+  project?: string;
+  hackathon?: string;
+  award?: string;
+  [key: string]: string | string[] | boolean | undefined;
 }
 
 export interface ContentItem {
@@ -20,7 +27,7 @@ export interface ContentItem {
 /**
  * Get all markdown files from a content directory
  */
-export function getContentItems(contentType: "blogs" | "notes" | "research" | "travel"): ContentItem[] {
+export function getContentItems(contentType: "blogs" | "notes" | "research" | "travel" | "projects" | "hackathons"): ContentItem[] {
   const contentDir = path.join(process.cwd(), `content/${contentType}`);
 
   // Check if directory exists
