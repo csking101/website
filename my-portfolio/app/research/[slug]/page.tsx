@@ -22,6 +22,12 @@ export default async function ResearchPage({ params }: { params: { slug: string 
   const raw = fs.readFileSync(filePath, "utf8");
   const { content, data } = matter(raw);
 
+  // Enrichment (word count, read time, updated timestamp, typed frontmatter)
+  const words = content.trim().split(/\s+/).length;
+  const readingTime = `${Math.max(1, Math.ceil(words / 200))} min read`;
+  const fileUpdated = fs.statSync(filePath).mtime.toISOString().split("T")[0];
+  const frontmatter = data as { author?: string; updated?: string; [key: string]: unknown };
+
   const rendered = await unified()
     .use(remarkParse)
     .use(remarkGfm)
@@ -40,7 +46,13 @@ export default async function ResearchPage({ params }: { params: { slug: string 
   return (
     <ContentDisplay
       htmlContent={html}
-      metadata={data}
+      metadata={{
+        ...frontmatter,
+        author: frontmatter.author || "Author",
+        readingTime,
+        wordCount: words,
+        updated: frontmatter.updated || fileUpdated,
+      }}
       type="research"
       backLink={{ href: "/research", label: "Back to Research" }}
       slug={slug}

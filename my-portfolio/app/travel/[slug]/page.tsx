@@ -19,6 +19,12 @@ export default async function TripPage(
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { content, data } = matter(fileContent);
 
+  // Enrichment (word count, read time, updated timestamp, typed frontmatter)
+  const words = content.trim().split(/\s+/).length;
+  const readingTime = `${Math.max(1, Math.ceil(words / 200))} min read`;
+  const fileUpdated = fs.statSync(filePath).mtime.toISOString().split("T")[0];
+  const frontmatter = data as { author?: string; updated?: string; [key: string]: unknown };
+
   const htmlContent = await unified()
     .use(remarkParse)
     .use(remarkRehype)
@@ -31,7 +37,13 @@ export default async function TripPage(
   return (
     <ContentDisplay
       htmlContent={String(htmlContent)}
-      metadata={data}
+      metadata={{
+        ...frontmatter,
+        author: frontmatter.author || "Author",
+        readingTime,
+        wordCount: words,
+        updated: frontmatter.updated || fileUpdated,
+      }}
       type="travel"
       backLink={{ href: "/travel", label: "Back to Travel" }}
       slug={slug}

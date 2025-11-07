@@ -5,6 +5,7 @@ import matter from "gray-matter";
 export interface ContentMetadata {
   title: string;
   date: string;
+  author?: string;
   tags?: string[];
   days?: string;
   location?: string;
@@ -15,7 +16,10 @@ export interface ContentMetadata {
   project?: string;
   hackathon?: string;
   award?: string;
-  [key: string]: string | string[] | boolean | undefined;
+  readingTime?: string;
+  wordCount?: number;
+  updated?: string;
+  [key: string]: string | string[] | boolean | number | undefined;
 }
 
 export interface ContentItem {
@@ -42,17 +46,33 @@ export function getContentItems(contentType: "blogs" | "notes" | "research" | "t
     const slug = filename.replace(/\.md$/, "");
     const filePath = path.join(contentDir, filename);
     const fileContent = fs.readFileSync(filePath, "utf8");
+    const stats = fs.statSync(filePath);
     const { data, content } = matter(fileContent);
+
+    // Compute word count & reading time
+    const words = content.trim().split(/\s+/).length;
+    const wordsPerMinute = 200;
+    const readingMinutes = Math.max(1, Math.ceil(words / wordsPerMinute));
+    const readingTime = `${readingMinutes} min read`;
 
     // Extract first paragraph as excerpt
     const excerpt = content
       .split("\n")
       .find((line) => line.trim().length > 0 && !line.startsWith("#"))
-      ?.substring(0, 150);
+      ?.substring(0, 180);
+
+    // Enrich metadata
+    const enriched: ContentMetadata = {
+      ...(data as ContentMetadata),
+      author: (data as any).author || "Author",
+      wordCount: words,
+      readingTime,
+      updated: (data as any).updated || stats.mtime.toISOString().split("T")[0],
+    };
 
     return {
       slug,
-      metadata: data as ContentMetadata,
+      metadata: enriched,
       excerpt,
     };
   });

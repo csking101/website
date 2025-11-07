@@ -1,10 +1,14 @@
 interface ContentMetadata {
   title?: string;
   date?: string;
+  author?: string;
+  readingTime?: string;
+  wordCount?: number;
+  updated?: string;
   tags?: string[];
   location?: string;
   days?: string;
-  [key: string]: string | string[] | undefined;
+  [key: string]: string | string[] | number | undefined;
 }
 
 interface ContentDisplayProps {
@@ -59,15 +63,85 @@ export default function ContentDisplay({
             <p className="text-gray-600 mb-2">{metadata.days}</p>
           )}
 
-          {/* Date */}
+          {/* Primary meta (date) */}
           {metadata?.date && (
-            <time className="text-gray-600 block mb-4" dateTime={metadata.date}>
+            <time
+              className="text-gray-600 block mb-2"
+              dateTime={metadata.date}
+            >
               {new Date(metadata.date).toLocaleDateString("en-US", {
                 month: "long",
                 day: "numeric",
                 year: "numeric",
               })}
             </time>
+          )}
+
+          {/* Extended metadata */}
+          {(metadata?.author ||
+            metadata?.readingTime ||
+            typeof metadata?.wordCount === "number" ||
+            (metadata?.updated && metadata?.updated !== metadata?.date)) && (
+            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-4">
+              {metadata.author && (
+                <span className="inline-flex items-center gap-1">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Zm0 2c-4 0-7 2-7 4v1c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1c0-2-3-4-7-4Z"
+                    />
+                  </svg>
+                  {metadata.author}
+                </span>
+              )}
+              {metadata.readingTime && (
+                <span className="inline-flex items-center gap-1">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 6v6l4 2m6-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z"
+                    />
+                  </svg>
+                  {metadata.readingTime}
+                </span>
+              )}
+              {typeof metadata.wordCount === "number" && (
+                <span>{metadata.wordCount} words</span>
+              )}
+              {metadata.updated &&
+                metadata.updated !== metadata.date && (
+                  <span className="inline-flex items-center gap-1">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 8v4l3 3M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Z"
+                      />
+                    </svg>
+                    Updated {metadata.updated}
+                  </span>
+                )}
+            </div>
           )}
 
           {/* Tags */}
