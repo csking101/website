@@ -30,12 +30,12 @@ export default function ContentDisplay({
   slug,
 }: ContentDisplayProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pt-24 pb-20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-950 dark:to-slate-900 pt-24 pb-20 transition-colors">
       <div className="max-w-3xl mx-auto px-4">
         {/* Back Button */}
         <a
           href={backLink.href}
-          className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-8 transition-colors"
+          className="inline-flex items-center text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200 mb-8 transition-colors"
         >
           <svg
             className="w-5 h-5 mr-2"
@@ -51,22 +51,22 @@ export default function ContentDisplay({
 
         {/* Header */}
         <header className="mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-5xl font-bold text-gray-900 dark:text-slate-100 mb-4">
             {metadata?.title ?? slug}
           </h1>
 
           {/* Type-specific fields */}
           {metadata?.location && (
-            <p className="text-lg text-gray-600 mb-2">{metadata.location}</p>
+            <p className="text-lg text-gray-600 dark:text-slate-400 mb-2">{metadata.location}</p>
           )}
           {metadata?.days && (
-            <p className="text-gray-600 mb-2">{metadata.days}</p>
+            <p className="text-gray-600 dark:text-slate-400 mb-2">{metadata.days}</p>
           )}
 
           {/* Primary meta (date) */}
           {metadata?.date && (
             <time
-              className="text-gray-600 block mb-2"
+              className="text-gray-600 dark:text-slate-400 block mb-2"
               dateTime={metadata.date}
             >
               {new Date(metadata.date).toLocaleDateString("en-US", {
@@ -82,7 +82,7 @@ export default function ContentDisplay({
             metadata?.readingTime ||
             typeof metadata?.wordCount === "number" ||
             (metadata?.updated && metadata?.updated !== metadata?.date)) && (
-            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-4">
+            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 dark:text-slate-400 mb-4">
               {metadata.author && (
                 <span className="inline-flex items-center gap-1">
                   <svg
@@ -150,7 +150,7 @@ export default function ContentDisplay({
               {metadata.tags.map((tag: string) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-sm font-medium bg-white border border-gray-200 text-gray-700 rounded-full"
+                  className="px-3 py-1 text-sm font-medium bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 text-gray-700 dark:text-slate-200 rounded-full"
                 >
                   {tag}
                 </span>
@@ -166,6 +166,69 @@ export default function ContentDisplay({
             line-height: 1.75;
             color: #1f2937;
             word-wrap: break-word;
+          }
+
+          /* Dark mode overrides */
+          .dark .content-markdown {
+            color: #e2e8f0;
+          }
+          .dark .content-markdown h1 { color: #f8fafc; }
+          .dark .content-markdown h2 { color: #f1f5f9; border-bottom-color: #334155; }
+          .dark .content-markdown h3 { color: #e2e8f0; }
+          .dark .content-markdown h4 { color: #cbd5e1; }
+          .dark .content-markdown p { color: #e2e8f0; }
+          .dark .content-markdown strong { color: #f8fafc; }
+          .dark .content-markdown a {
+            color: #60a5fa;
+            border-bottom-color: rgba(96,165,250,0.4);
+          }
+          .dark .content-markdown a:hover {
+            color: #93c5fd;
+            border-bottom-color: rgba(147,197,253,0.6);
+          }
+          .dark .content-markdown code {
+            background: #1e293b;
+            border-color: #334155;
+            color: #93c5fd;
+          }
+          .dark .content-markdown pre {
+            background: linear-gradient(135deg,#0f172a,#1e293b);
+            box-shadow: inset 0 0 0 1px #1e293b,0 4px 12px -2px rgba(0,0,0,0.6);
+          }
+          .dark .content-markdown blockquote {
+            background: #1e293b;
+            border-left-color: #3b82f6;
+            color: #cbd5e1;
+          }
+          .dark .content-markdown hr {
+            background: #334155;
+          }
+          .dark .content-markdown table {
+            color: #e2e8f0;
+          }
+          .dark .content-markdown th {
+            background: #1e293b;
+            color: #f8fafc;
+            border-color: #334155;
+          }
+          .dark .content-markdown td {
+            border-color: #334155;
+          }
+          .dark .content-markdown tbody tr:nth-child(odd) td {
+            background: #0f172a;
+          }
+          .dark .content-markdown img {
+            box-shadow: 0 4px 18px -4px rgba(0,0,0,0.7);
+          }
+          .dark .content-markdown .callout {
+            background: #1e293b;
+            border-color: #334155;
+            border-left-color: #0d66d9;
+            color: #cbd5e1;
+          }
+          .dark .content-markdown ul li::marker,
+          .dark .content-markdown ol li::marker {
+            color: #64748b;
           }
 
           /* Headings (no section breaks / borders) */

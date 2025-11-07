@@ -14,14 +14,14 @@ export default function BlogsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-950 dark:to-slate-900 transition-colors">
       <div className="container mx-auto px-4 pt-24 pb-20">
         {/* Header */}
         <div className="mx-auto mb-12 flex-col items-center text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-slate-100 mb-4">
             Thoughts
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 dark:text-slate-400">
             Ideas, learnings, and reflections on technology, design, and life.
           </p>
         </div>
@@ -32,19 +32,19 @@ export default function BlogsPage() {
             {postsWithReadTime.map((post) => (
               <article
                 key={post.slug}
-                className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 overflow-hidden flex flex-col"
+                className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden flex flex-col"
               >
                 <a href={`/blogs/${post.slug}`} className="flex flex-col h-full">
                   {/* Content */}
                   <div className="p-6 flex-grow">
                     {/* Title */}
-                    <h2 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                    <h2 className="text-xl font-semibold text-gray-900 dark:text-slate-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors line-clamp-2">
                       {post.metadata.title}
                     </h2>
 
                     {/* Excerpt */}
                     {post.excerpt && (
-                      <p className="text-gray-600 mb-4 line-clamp-3">
+                      <p className="text-gray-600 dark:text-slate-400 mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
                     )}
@@ -55,7 +55,7 @@ export default function BlogsPage() {
                         {post.metadata.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full"
+                            className="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-200 rounded-full"
                           >
                             {tag}
                           </span>
@@ -65,7 +65,7 @@ export default function BlogsPage() {
                   </div>
 
                   {/* Footer */}
-                  <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between text-sm text-gray-500">
+                  <div className="px-6 py-4 bg-gray-50 dark:bg-slate-900 border-t border-gray-100 dark:border-slate-700 flex items-center justify-between text-sm text-gray-500 dark:text-slate-400">
                     <time dateTime={post.metadata.date}>
                       {new Date(post.metadata.date).toLocaleDateString('en-US', {
                         month: 'short',
@@ -83,10 +83,10 @@ export default function BlogsPage() {
           /* Empty State */
           <div className="max-w-2xl mx-auto text-center py-20">
             <div className="text-6xl mb-4">📝</div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-slate-100 mb-2">
               No thoughts yet
             </h3>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-slate-400">
               Check back soon for new posts and reflections!
             </p>
           </div>

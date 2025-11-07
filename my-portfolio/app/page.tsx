@@ -1,11 +1,13 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-950 dark:to-slate-900 transition-colors">
       {/* Hero Section */}
       <section className="container mx-auto px-4 pt-32 pb-20">
         <div className="max-w-5xl mx-auto text-center">
           {/* Name */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-12">
+          <h1 className="text-5xl md:text-7xl font-bold mb-12 text-slate-900 dark:text-slate-100 transition-colors">
             Chinmaya Sahu
           </h1>
           
@@ -18,24 +20,24 @@ export default function Home() {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4 justify-center">
-            <a
+            <Link
               href="/projects"
               className="px-8 py-3 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg font-medium hover:opacity-90 transition-opacity"
             >
               View Projects
-            </a>
-            <a
+            </Link>
+            <Link
               href="/blogs"
               className="px-8 py-3 border-2 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
             >
               Read Thoughts
-            </a>
-            <a
+            </Link>
+            <Link
               href="/research"
               className="px-8 py-3 border-2 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
             >
               Research
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -44,7 +46,7 @@ export default function Home() {
       <section className="container mx-auto px-4 pb-20">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
           {/* Projects Card */}
-          <a
+          <Link
             href="/projects"
             className="group p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
           >
@@ -55,10 +57,10 @@ export default function Home() {
             <p className="text-slate-600 dark:text-slate-400">
               Explore my latest builds, experiments, and hackathon wins.
             </p>
-          </a>
+          </Link>
 
           {/* Notes Card */}
-          <a
+          <Link
             href="/notes"
             className="group p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
           >
@@ -69,10 +71,10 @@ export default function Home() {
             <p className="text-slate-600 dark:text-slate-400">
               Quick thoughts, learnings, and technical notes.
             </p>
-          </a>
+          </Link>
 
           {/* Travel Card */}
-          <a
+          <Link
             href="/travel"
             className="group p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
           >
@@ -81,9 +83,9 @@ export default function Home() {
               Travel
             </h3>
             <p className="text-slate-600 dark:text-slate-400">
-              Places I've been and stories from the road.
+              Places I&apos;ve been and stories from the road.
             </p>
-          </a>
+          </Link>
         </div>
       </section>
     </div>

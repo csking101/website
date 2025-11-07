@@ -5,14 +5,14 @@ export default function TravelPage() {
   const travelSpots = getContentItems("travel");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-950 dark:to-slate-900 transition-colors">
       <div className="container mx-auto px-4 pt-24 pb-20">
         {/* Header */}
         <div className="mx-auto mb-12 flex-col items-center text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-slate-100 mb-4">
             Travel
           </h1>
-          <p className="text-xl text-gray-600 max-w-6xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-slate-400 max-w-6xl mx-auto">
             I like exploring new places — walking around cities, finding quiet
             corners, and learning from the world one trip at a time.
           </p>
@@ -37,10 +37,10 @@ export default function TravelPage() {
           /* Empty state fallback */
           <div className="max-w-2xl mx-auto text-center py-20">
             <div className="text-6xl mb-4">🌍</div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-slate-100 mb-2">
               No trips yet
             </h3>
-            <p className="text-gray-600">More adventures coming soon.</p>
+            <p className="text-gray-600 dark:text-slate-400">More adventures coming soon.</p>
           </div>
         )}
       </div>
