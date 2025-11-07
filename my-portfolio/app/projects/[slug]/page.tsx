@@ -48,13 +48,13 @@ export default async function ProjectPage({ params }: { params: { slug: string }
       htmlContent={html}
       metadata={{
         ...frontmatter,
-        author: frontmatter.author || "Author",
+        author: frontmatter.author || "Chinmaya Sahu",
         readingTime,
         wordCount: words,
         updated: frontmatter.updated || fileUpdated,
       }}
       type="project"
-      backLink={{ href: "/projects", label: "Back to Projects" }}
+      backLink={{ href: "/projects", label: "Other Projects" }}
       slug={slug}
     />
   );

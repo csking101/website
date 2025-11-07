@@ -48,13 +48,13 @@ export default async function BlogPost({ params }: { params: { slug: string } })
       htmlContent={html}
       metadata={{
         ...frontmatter,
-        author: frontmatter.author || "Author",
+        author: frontmatter.author || "Chinmaya Sahu",
         readingTime,
         wordCount: words,
         updated: frontmatter.updated || fileUpdated,
       }}
       type="thoughts"
-      backLink={{ href: "/blogs", label: "Back to Thoughts" }}
+      backLink={{ href: "/blogs", label: "Other Thoughts" }}
       slug={slug}
     />
   );

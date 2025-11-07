@@ -39,13 +39,13 @@ export default async function TripPage(
       htmlContent={String(htmlContent)}
       metadata={{
         ...frontmatter,
-        author: frontmatter.author || "Author",
+        author: frontmatter.author || "Chinmaya Sahu",
         readingTime,
         wordCount: words,
         updated: frontmatter.updated || fileUpdated,
       }}
       type="travel"
-      backLink={{ href: "/travel", label: "Back to Travel" }}
+      backLink={{ href: "/travel", label: "Other Travel" }}
       slug={slug}
     />
   );

@@ -48,13 +48,13 @@ export default async function NotePage({ params }: { params: { slug: string } })
       htmlContent={html}
       metadata={{
         ...frontmatter,
-        author: frontmatter.author || "Author",
+        author: frontmatter.author || "Chinmaya Sahu",
         readingTime,
         wordCount: words,
         updated: frontmatter.updated || fileUpdated,
       }}
       type="notes"
-      backLink={{ href: "/notes", label: "Back to Notes" }}
+      backLink={{ href: "/notes", label: "Other Notes" }}
       slug={slug}
     />
   );

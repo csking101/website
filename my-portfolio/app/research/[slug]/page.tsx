@@ -48,13 +48,13 @@ export default async function ResearchPage({ params }: { params: { slug: string 
       htmlContent={html}
       metadata={{
         ...frontmatter,
-        author: frontmatter.author || "Author",
+        author: frontmatter.author || "Chinmaya Sahu",
         readingTime,
         wordCount: words,
         updated: frontmatter.updated || fileUpdated,
       }}
       type="research"
-      backLink={{ href: "/research", label: "Back to Research" }}
+      backLink={{ href: "/research", label: "Other Research" }}
       slug={slug}
     />
   );

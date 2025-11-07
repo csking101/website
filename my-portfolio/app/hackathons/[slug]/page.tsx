@@ -48,13 +48,13 @@ export default async function HackathonPage({ params }: { params: { slug: string
       htmlContent={html}
       metadata={{
         ...frontmatter,
-        author: frontmatter.author || "Author",
+        author: frontmatter.author || "Chinmaya Sahu",
         readingTime,
         wordCount: words,
         updated: frontmatter.updated || fileUpdated,
       }}
       type="hackathon"
-      backLink={{ href: "/projects", label: "Back to Projects & Hackathons" }}
+      backLink={{ href: "/projects", label: "Other Projects & Hackathons" }}
       slug={slug}
     />
   );
