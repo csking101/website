@@ -64,7 +64,7 @@ export function getContentItems(contentType: "blogs" | "notes" | "research" | "t
     // Enrich metadata
     const enriched: ContentMetadata = {
       ...(data as ContentMetadata),
-      author: (data as any).author || "Author",
+      author: (data as any).author || "Chinmaya Sahu",
       wordCount: words,
       readingTime,
       updated: (data as any).updated || stats.mtime.toISOString().split("T")[0],
