@@ -4,28 +4,29 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, type ChangeEvent } from "react";
 import { useTheme, type Font } from "./theme-provider";
+import { Home, Pencil, Package, Flag, FlaskConical, FileText, Plane, Utensils, BookOpen, Dumbbell } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggle, font, setFont } = useTheme();
 
   const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Thoughts", href: "/blogs" },
-    { name: "Projects", href: "/projects" },
-    { name: "Journey", href: "/journey" },
-    { name: "Research", href: "/research" },
-    { name: "Notes", href: "/notes" },
-    { name: "Travel", href: "/travel" },
-    { name: "Food", href: "/food" },
-    { name: "Books", href: "/books" },
-    { name: "Sports", href: "/sports" },
+    { name: "Home", href: "/", icon: Home },
+    { name: "Thoughts", href: "/blogs", icon: Pencil },
+    { name: "Projects", href: "/projects", icon: Package },
+    { name: "Journey", href: "/journey", icon: Flag },
+    { name: "Research", href: "/research", icon: FlaskConical },
+    { name: "Notes", href: "/notes", icon: FileText },
+    { name: "Travel", href: "/travel", icon: Plane },
+    { name: "Food", href: "/food", icon: Utensils },
+    { name: "Books", href: "/books", icon: BookOpen },
+    { name: "Sports", href: "/sports", icon: Dumbbell },
   ];
 
   return (
     <nav className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-800">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
+        <div className="relative flex items-center h-16">
           {/* Logo/Name */}
           <Link
             href="/"
@@ -40,70 +41,89 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors font-medium"
-              >
-                {item.name}
-              </Link>
-            ))}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={toggle}
-                aria-label="Toggle theme"
-                className="inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700"
-              >
-                {theme === "dark" ? (
-                  <span className="flex items-center gap-1">
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
-                    </svg>
-                    Dark
+          {/* Desktop Navigation - centered icons */}
+          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
+            <div className="flex items-center gap-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  aria-label={item.name}
+                  className="group relative inline-flex items-center justify-center"
+                >
+                  <span
+                    className="relative flex items-center justify-center w-10 h-10 rounded-full
+                      text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-100 transition-colors
+                      before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-slate-200/0 before:to-slate-400/0 dark:before:from-slate-700/0 dark:before:to-slate-600/0
+                      group-hover:before:from-slate-200/70 group-hover:before:to-slate-400/40 dark:group-hover:before:from-slate-700/70 dark:group-hover:before:to-slate-600/40
+                      before:blur-md before:opacity-0 group-hover:opacity-100"
+                  >
+                    <item.icon className="w-5 h-5" />
                   </span>
-                ) : (
-                  <span className="flex items-center gap-1">
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="5" />
-                      <path d="M12 1v2m0 18v2m11-11h-2M3 12H1m19.071 7.071-1.414-1.414M6.343 6.343 4.93 4.93m12.728 0 1.414 1.414M6.343 17.657l-1.414 1.414" />
-                    </svg>
-                    Light
+                  <span
+                    className="pointer-events-none absolute top-full mt-2 px-2 py-1 rounded-md bg-white dark:bg-slate-800
+                      text-xs font-medium text-slate-700 dark:text-slate-300 shadow-lg border border-slate-200 dark:border-slate-700
+                      opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all"
+                  >
+                    {item.name}
                   </span>
-                )}
-              </button>
-              <select
-                aria-label="Select font"
-                value={font}
-                onChange={(e: ChangeEvent<HTMLSelectElement>) => setFont(e.target.value as Font)}
-                className="rounded-md px-3 py-2 text-sm bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600"
-              >
-                <option value="ibm">IBM Plex Sans (Default)</option>
-                <option value="inter">Inter</option>
-                <option value="lora">Lora</option>
-                <option value="merriweather">Merriweather</option>
-                <option value="openSans">Open Sans</option>
-                <option value="robotoSlab">Roboto Slab</option>
-              </select>
+                </Link>
+              ))}
             </div>
+          </div>
+          {/* Desktop Controls right */}
+          <div className="hidden md:flex items-center gap-3 ml-auto">
+            <button
+              onClick={toggle}
+              aria-label="Toggle theme"
+              className="inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700"
+            >
+              {theme === "dark" ? (
+                <span className="flex items-center gap-1">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+                  </svg>
+                  Dark
+                </span>
+              ) : (
+                <span className="flex items-center gap-1">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="5" />
+                    <path d="M12 1v2m0 18v2m11-11h-2M3 12H1m19.071 7.071-1.414-1.414M6.343 6.343 4.93 4.93m12.728 0 1.414 1.414M6.343 17.657l-1.414 1.414" />
+                  </svg>
+                  Light
+                </span>
+              )}
+            </button>
+            <select
+              aria-label="Select font"
+              value={font}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) => setFont(e.target.value as Font)}
+              className="rounded-md px-3 py-2 text-sm bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600"
+            >
+              <option value="ibm">IBM Plex Sans (Default)</option>
+              <option value="inter">Inter</option>
+              <option value="lora">Lora</option>
+              <option value="merriweather">Merriweather</option>
+              <option value="openSans">Open Sans</option>
+              <option value="robotoSlab">Roboto Slab</option>
+            </select>
           </div>
 
           {/* Mobile Menu Button */}
