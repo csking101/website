@@ -16,6 +16,9 @@ export default function Navbar() {
     { name: "Research", href: "/research" },
     { name: "Notes", href: "/notes" },
     { name: "Travel", href: "/travel" },
+    { name: "Food", href: "/food" },
+    { name: "Books", href: "/books" },
+    { name: "Sports", href: "/sports" },
   ];
 
   return (

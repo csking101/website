@@ -14,7 +14,7 @@ interface ContentMetadata {
 interface ContentDisplayProps {
   htmlContent: string;
   metadata: ContentMetadata;
-  type: "notes" | "travel" | "research" | "thoughts" | "project" | "hackathon";
+  type: "notes" | "travel" | "research" | "thoughts" | "project" | "hackathon" | "food" | "books" | "sports";
   backLink: {
     href: string;
     label: string;

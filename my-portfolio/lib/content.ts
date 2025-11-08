@@ -31,7 +31,7 @@ export interface ContentItem {
 /**
  * Get all markdown files from a content directory
  */
-export function getContentItems(contentType: "blogs" | "notes" | "research" | "travel" | "projects" | "hackathons"): ContentItem[] {
+export function getContentItems(contentType: "blogs" | "notes" | "research" | "travel" | "projects" | "hackathons" | "food" | "books" | "sports"): ContentItem[] {
   const contentDir = path.join(process.cwd(), `content/${contentType}`);
 
   // Check if directory exists
@@ -61,13 +61,14 @@ export function getContentItems(contentType: "blogs" | "notes" | "research" | "t
       .find((line) => line.trim().length > 0 && !line.startsWith("#"))
       ?.substring(0, 180);
 
-    // Enrich metadata
+    // Enrich metadata (remove any casts)
+    const front = data as Partial<ContentMetadata>;
     const enriched: ContentMetadata = {
-      ...(data as ContentMetadata),
-      author: (data as any).author || "Chinmaya Sahu",
+      ...(front as ContentMetadata),
+      author: front.author || "Chinmaya Sahu",
       wordCount: words,
       readingTime,
-      updated: (data as any).updated || stats.mtime.toISOString().split("T")[0],
+      updated: front.updated || stats.mtime.toISOString().split("T")[0],
     };
 
     return {
