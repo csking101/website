@@ -6,11 +6,7 @@ import { ArrowRight } from "lucide-react";
 export function HeroInteractive() {
   return (
     <section className="relative pt-12 pb-6 md:pt-16 md:pb-8">
-      {/* Minimal, subtle background (kept light to save vertical space) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-        <div className="absolute -top-14 left-1/3 w-48 h-48 rounded-full bg-gradient-to-br from-indigo-300/25 to-blue-400/25 dark:from-indigo-700/15 dark:to-blue-700/15 blur-3xl" />
-        <div className="absolute top-1/2 -right-16 w-52 h-52 rounded-full bg-gradient-to-tr from-pink-300/25 to-purple-300/25 dark:from-pink-700/15 dark:to-purple-700/15 blur-3xl" />
-      </div>
+      {/* Background accents removed to unify global gradient (avoid seam below hero) */}
 
       <div className="relative max-w-6xl mx-auto px-4 text-center">
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.25)] dark:drop-shadow-[0_4px_12px_rgba(0,0,0,0.55)] relative leading-[1.15] md:leading-[1.15] pb-4 md:pb-5 z-20 overflow-visible">
