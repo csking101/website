@@ -29,10 +29,10 @@ export default function Home() {
         <div
           className="flex-1 px-6 md:px-12 pb-4 overflow-hidden flex flex-col"
         >
-          <div className="flex-1 grid grid-rows-1 gap-4 grid-cols-3 p-3 h-full">
+          <div className="flex-1 grid gap-4 grid-cols-1 md:grid-cols-3 p-3 md:h-full">
             {/* Featured Projects Tile */}
             <section
-              className="group relative rounded-xl p-5 flex flex-col h-full min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all"
+              className="group relative rounded-xl p-5 flex flex-col md:h-full md:min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all"
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200 dark:from-indigo-900/40 dark:via-blue-900/30 dark:to-indigo-800/40 transition-opacity" />
               <header className="relative flex items-center justify-between mb-2">
@@ -73,7 +73,7 @@ export default function Home() {
             </section>
 
             {/* Latest Blogs Tile */}
-            <section className="group relative rounded-xl p-5 flex flex-col h-full min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all">
+            <section className="group relative rounded-xl p-5 flex flex-col md:h-full md:min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all">
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-fuchsia-50 via-pink-100 to-purple-100 dark:from-fuchsia-900/40 dark:via-pink-900/30 dark:to-purple-900/40 transition-opacity" />
               <header className="relative flex items-center justify-between mb-0.5">
                 <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-wide text-fuchsia-600 dark:text-fuchsia-400">
@@ -111,7 +111,7 @@ export default function Home() {
             </section>
 
             {/* Notes Tile */}
-            <section className="group relative rounded-xl p-5 flex flex-col h-full min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all">
+            <section className="group relative rounded-xl p-5 flex flex-col md:h-full md:min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all">
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-100 dark:from-emerald-900/40 dark:via-teal-900/30 dark:to-cyan-900/40 transition-opacity" />
               <header className="relative flex items-center justify-between mb-0.5">
                 <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
