@@ -21,7 +21,7 @@ export default function Home() {
       {/* Layout grid (single screen) */}
       <div className="relative z-10 flex flex-col h-full overflow-hidden">
         {/* Top hero trimmed */}
-        <div className="flex-none overflow-visible mt-10 md:mt-14 lg:mt-16">
+        <div className="flex-none overflow-visible mt-6 md:mt-8 mb-8 md:mb-10 lg:mb-12">
           <HeroInteractive />
         </div>
 
@@ -29,14 +29,14 @@ export default function Home() {
         <div
           className="flex-1 px-6 md:px-12 pb-4 overflow-hidden flex flex-col"
         >
-          <div className="mt-auto grid gap-4 grid-cols-3 auto-rows-[1fr] p-3">
+          <div className="flex-1 grid grid-rows-1 gap-4 grid-cols-3 p-3 h-full">
             {/* Featured Projects Tile */}
             <section
-              className="group relative rounded-xl p-4 flex flex-col bg-transparent overflow-hidden hover:shadow-md transition-all"
+              className="group relative rounded-xl p-5 flex flex-col h-full min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all"
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200 dark:from-indigo-900/40 dark:via-blue-900/30 dark:to-indigo-800/40 transition-opacity" />
               <header className="relative flex items-center justify-between mb-2">
-                <h3 className="text-lg font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
+                <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
                   Featured Projects
                 </h3>
                 <Link
@@ -58,11 +58,11 @@ export default function Home() {
                   >
                     <span className="text-lg">💡</span>
                     <div className="flex flex-col">
-                      <span className="font-medium leading-tight group-hover/item:text-indigo-700 dark:group-hover/item:text-indigo-300 line-clamp-1">
+                      <span className="text-lg font-semibold leading-tight group-hover/item:text-indigo-700 dark:group-hover/item:text-indigo-300 line-clamp-1">
                         {p.metadata.title}
                       </span>
                       {p.excerpt && (
-                        <span className="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">
+                        <span className="text-base text-slate-500 dark:text-slate-400 line-clamp-1">
                           {p.excerpt}
                         </span>
                       )}
@@ -73,10 +73,10 @@ export default function Home() {
             </section>
 
             {/* Latest Blogs Tile */}
-            <section className="group relative rounded-xl p-4 flex flex-col bg-transparent overflow-hidden hover:shadow-md transition-all">
+            <section className="group relative rounded-xl p-5 flex flex-col h-full min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all">
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-fuchsia-50 via-pink-100 to-purple-100 dark:from-fuchsia-900/40 dark:via-pink-900/30 dark:to-purple-900/40 transition-opacity" />
               <header className="relative flex items-center justify-between mb-0.5">
-                <h3 className="text-lg font-semibold uppercase tracking-wide text-fuchsia-600 dark:text-fuchsia-400">
+                <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-wide text-fuchsia-600 dark:text-fuchsia-400">
                   Thoughts
                 </h3>
                 <Link
@@ -93,7 +93,7 @@ export default function Home() {
                     href={`/blogs/${b.slug}`}
                     className="flex flex-col rounded-md px-3 py-2 hover:bg-pink-100/60 dark:hover:bg-pink-900/40 transition-colors"
                   >
-                    <span className="font-medium line-clamp-1 group-hover:text-fuchsia-700 dark:group-hover:text-fuchsia-300">
+                    <span className="text-lg font-semibold line-clamp-1 group-hover:text-fuchsia-700 dark:group-hover:text-fuchsia-300">
                       {b.metadata.title}
                     </span>
                     <span className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2">
@@ -111,10 +111,10 @@ export default function Home() {
             </section>
 
             {/* Notes Tile */}
-            <section className="group relative rounded-xl p-4 flex flex-col bg-transparent overflow-hidden hover:shadow-md transition-all">
+            <section className="group relative rounded-xl p-5 flex flex-col h-full min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all">
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-100 dark:from-emerald-900/40 dark:via-teal-900/30 dark:to-cyan-900/40 transition-opacity" />
               <header className="relative flex items-center justify-between mb-0.5">
-                <h3 className="text-lg font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+                <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
                   Notes
                 </h3>
                 <Link
@@ -133,7 +133,7 @@ export default function Home() {
                   >
                     <span className="text-base">📝</span>
                     <div className="flex flex-col">
-                      <span className="font-medium line-clamp-1 group-hover:text-emerald-700 dark:group-hover:text-emerald-300">
+                      <span className="text-lg font-semibold line-clamp-1 group-hover:text-emerald-700 dark:group-hover:text-emerald-300">
                         {n.metadata.title}
                       </span>
                       <span className="text-xs text-slate-500 dark:text-slate-400">
