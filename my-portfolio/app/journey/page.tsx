@@ -83,7 +83,7 @@ const dotColor: Record<Milestone["status"], string> = {
 
 export default function JourneyPage() {
   return (
-    <div className="pt-24 pb-32 container mx-auto px-4">
+    <div className="pt-20 pb-24 md:pt-24 md:pb-32 container mx-auto px-4">
       <h1 className="text-3xl font-bold mb-2">Journey</h1>
       <p className="text-slate-600 dark:text-slate-400 mb-12 max-w-2xl">
         A mapped journey of academic milestones, internships, and forward-looking
@@ -91,10 +91,10 @@ export default function JourneyPage() {
         sides to mark each stage.
       </p>
 
-      <div className="relative">
+      <div className="relative mt-4">
         {/* Central dashed vertical path */}
         <div
-          className="absolute left-1/2 top-0 -translate-x-1/2 h-full border-l-4 border-dashed border-slate-300 dark:border-slate-700"
+          className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full border-l-4 border-dashed border-slate-300 dark:border-slate-700"
           aria-hidden="true"
         />
 
@@ -104,15 +104,15 @@ export default function JourneyPage() {
             return (
               <li
                 key={m.id}
-                className={`relative flex ${
+                className={`relative flex w-full justify-start md:w-auto ${
                   side === "left"
-                    ? "justify-start pr-[52%]"
-                    : "justify-end pl-[52%]"
+                    ? "md:justify-start md:pr-[52%]"
+                    : "md:justify-end md:pl-[52%]"
                 }`}
               >
                 {/* Connector dot */}
                 <div
-                  className="absolute left-1/2 -translate-x-1/2 top-6 w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-4 border-slate-300 dark:border-slate-700 flex items-center justify-center"
+                  className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-4 border-slate-300 dark:border-slate-700 items-center justify-center"
                   aria-hidden="true"
                 >
                   <span
@@ -120,7 +120,7 @@ export default function JourneyPage() {
                   />
                 </div>
 
-                <div className="group bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 rounded-xl p-5 max-w-md hover:shadow-md transition-shadow">
+                <div className="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm shadow-[0_1px_4px_rgba(0,0,0,0.06)] dark:shadow-sm border border-slate-200/70 dark:border-slate-700 rounded-xl p-5 w-full max-w-md hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <div>
                       <h2 className="font-semibold text-lg">{m.title}</h2>
@@ -146,7 +146,7 @@ export default function JourneyPage() {
         </ul>
       </div>
 
-      <div className="mt-20 max-w-2xl text-sm text-slate-500 dark:text-slate-400">
+      <div className="mt-16 md:mt-20 max-w-2xl text-sm text-slate-500 dark:text-slate-400">
         <p>
           Legend: Green = completed, Yellow = in progress, Gray = planned. Edit
           the <code>milestones</code> array in <code>app/journey/page.tsx</code>{" "}
