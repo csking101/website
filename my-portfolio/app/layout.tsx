@@ -3,6 +3,7 @@ import { IBM_Plex_Sans } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar';
 import { ThemeProvider } from '@/components/theme-provider';
+import { ScrollLock } from '@/components/scroll-lock';
 
 const ibm = IBM_Plex_Sans({ subsets: ['latin'], weight: ['400','500','600'] });
 
@@ -33,8 +34,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${ibm.className} overflow-hidden`}>
+      <body className={`${ibm.className} overflow-auto`}>
         <ThemeProvider>
+          <ScrollLock />
           <Navbar />
           <main>{children}</main>
         </ThemeProvider>

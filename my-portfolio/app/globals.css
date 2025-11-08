@@ -113,10 +113,24 @@
 }
 
 @layer base {
+  /* Remove always-on outline; keep border. Add outline only for keyboard (focus-visible) for accessibility. */
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+  }
+  *:focus-visible {
+    @apply outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE 10+ */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;               /* Chrome/Safari */
   }
 }

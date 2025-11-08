@@ -26,9 +26,9 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-800">
+    <nav className="fixed top-0 w-full bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.4)] border-b border-white/30 dark:border-slate-800/50">
       <div className="container mx-auto px-4">
-        <div className="relative flex items-center h-16">
+        <div className="relative grid grid-cols-[auto_1fr_auto] items-center h-16 w-full">
           {/* Logo/Name */}
           <Link
             href="/"
@@ -43,9 +43,9 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Navigation - centered icons */}
-          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
-            <div className="flex items-center gap-4">
+          {/* Desktop Navigation - centered icons (non-overlapping) */}
+          <div className="hidden md:flex justify-center justify-self-center overflow-hidden h-16">
+            <div className="flex flex-nowrap items-center justify-center gap-2 py-1 max-w-[880px] overflow-x-auto no-scrollbar whitespace-nowrap">
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
                 const Icon = item.icon;
@@ -55,23 +55,20 @@ export default function Navbar() {
                     href={item.href}
                     aria-label={item.name}
                     aria-current={isActive ? "page" : undefined}
-                    className={`group relative inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-500 rounded-full`}
+                    className={`group relative flex items-center h-10 px-2 whitespace-nowrap shrink-0
+                      transition-colors duration-300 focus:outline-none`}
                   >
                     <span
-                      className={`relative flex items-center justify-center w-10 h-10 rounded-full transition-all
+                      className={`relative flex items-center justify-center w-6 h-6 transition-colors
                       ${isActive ? "text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-100"}`}
                     >
                       <Icon className="w-5 h-5" />
-                      <span
-                        className={`absolute inset-0 rounded-full bg-gradient-to-br from-indigo-400/0 to-blue-400/0 blur-md transition-all
-                        group-hover:from-indigo-400/40 group-hover:to-blue-400/30
-                        ${isActive ? "from-indigo-500/50 to-blue-500/40" : ""}`}
-                      />
                     </span>
                     <span
-                      className={`pointer-events-none absolute top-full mt-2 px-2 py-1 rounded-md backdrop-blur-sm bg-white/80 dark:bg-slate-800/80
-                      text-xs font-medium shadow-lg border border-slate-200/60 dark:border-slate-700/60 transition-all
-                      ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"}`}
+                      className={`ml-2 text-xs md:text-sm font-medium tracking-wide whitespace-nowrap border-b-2 border-transparent
+                      transition-all duration-300
+                      ${isActive ? "max-w-[4rem] opacity-100 border-indigo-500/60 dark:border-indigo-400/60" : "max-w-0 opacity-0 group-hover:max-w-[4rem] group-hover:opacity-100 group-hover:border-indigo-400/40 dark:group-hover:border-indigo-300/40"}
+                      `}
                     >
                       {item.name}
                     </span>
@@ -81,7 +78,7 @@ export default function Navbar() {
             </div>
           </div>
           {/* Desktop Controls right */}
-          <div className="hidden md:flex items-center gap-3 ml-auto">
+          <div className="hidden md:flex items-center gap-3">
             <button
               onClick={toggle}
               aria-label="Toggle theme"
