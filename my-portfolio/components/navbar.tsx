@@ -84,38 +84,35 @@ export default function Navbar() {
               aria-label="Toggle theme"
               className="inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700"
             >
-              {theme === "dark" ? (
-                <span className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
-                  </svg>
-                  Dark
-                </span>
-              ) : (
-                <span className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="12" cy="12" r="5" />
-                    <path d="M12 1v2m0 18v2m11-11h-2M3 12H1m19.071 7.071-1.414-1.414M6.343 6.343 4.93 4.93m12.728 0 1.414 1.414M6.343 17.657l-1.414 1.414" />
-                  </svg>
-                  Light
-                </span>
-              )}
+              <span className="flex items-center gap-1 hidden dark:flex">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+                </svg>
+                Dark
+              </span>
+              <span className="flex items-center gap-1 flex dark:hidden">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="12" cy="12" r="5" />
+                  <path d="M12 1v2m0 18v2m11-11h-2M3 12H1m19.071 7.071-1.414-1.414M6.343 6.343 4.93 4.93m12.728 0 1.414 1.414M6.343 17.657l-1.414 1.414" />
+                </svg>
+                Light
+              </span>
             </button>
             <select
               aria-label="Select font"
@@ -176,7 +173,8 @@ export default function Navbar() {
                   aria-label="Toggle theme"
                   className="inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700"
                 >
-                  {theme === "dark" ? "Dark Mode" : "Light Mode"}
+                  <span className="hidden dark:inline">Dark Mode</span>
+                  <span className="inline dark:hidden">Light Mode</span>
                 </button>
                 <select
                   aria-label="Select font"
