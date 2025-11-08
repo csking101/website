@@ -6,14 +6,48 @@ import React, {
   createContext,
   useContext,
 } from "react";
+import {
+  IBM_Plex_Sans,
+  Inter,
+  Lora,
+  Merriweather,
+  Open_Sans,
+  Roboto_Slab,
+} from "next/font/google";
+
+const ibm = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
+const inter = Inter({ subsets: ["latin"] });
+const lora = Lora({ subsets: ["latin"] });
+const merriweather = Merriweather({ subsets: ["latin"] });
+const openSans = Open_Sans({ subsets: ["latin"] });
+const robotoSlab = Roboto_Slab({ subsets: ["latin"] });
 
 type Theme = "light" | "dark";
+export type Font =
+  | "ibm"
+  | "inter"
+  | "lora"
+  | "merriweather"
+  | "openSans"
+  | "robotoSlab";
 
 interface ThemeContextValue {
   theme: Theme;
   toggle: () => void;
   setTheme: (t: Theme) => void;
+  font: Font;
+  setFont: (f: Font) => void;
+  fontClass: string;
 }
+
+const fontClasses: Record<Font, string> = {
+  ibm: ibm.className,
+  inter: inter.className,
+  lora: lora.className,
+  merriweather: merriweather.className,
+  openSans: openSans.className,
+  robotoSlab: robotoSlab.className,
+};
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
@@ -22,10 +56,20 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("theme") as Theme | null;
       if (stored) return stored;
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .matches;
       return prefersDark ? "dark" : "light";
     }
     return "light";
+  });
+
+  const [font, setFontState] = useState<Font>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("font") as Font | null;
+      if (stored && fontClasses[stored]) return stored;
+    }
+    return "ibm"; // default IBM font
   });
 
   // Apply current theme class whenever theme changes
@@ -59,8 +103,33 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return () => mq.removeEventListener("change", listener);
   }, [setTheme]);
 
+  // Apply font class to body when font changes
+  useEffect(() => {
+    const body = document.body;
+    // remove any previous font classes
+    Object.values(fontClasses).forEach((cls) => body.classList.remove(cls));
+    body.classList.add(fontClasses[font]);
+    try {
+      localStorage.setItem("font", font);
+    } catch {}
+  }, [font]);
+
+  const setFont = useCallback((f: Font) => {
+    if (!fontClasses[f]) return;
+    setFontState(f);
+  }, []);
+
   return (
-    <ThemeContext.Provider value={{ theme, toggle, setTheme }}>
+    <ThemeContext.Provider
+      value={{
+        theme,
+        toggle,
+        setTheme,
+        font,
+        setFont,
+        fontClass: fontClasses[font],
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );
