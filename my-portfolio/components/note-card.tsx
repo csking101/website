@@ -17,7 +17,7 @@ export default function NoteCard({
   slug,
 }: NoteCardProps) {
   return (
-    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden flex flex-col">
+    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden flex flex-col min-h-[320px]">
       <Link href={`/notes/${slug}`} className="flex flex-col h-full p-6">
         {/* Title */}
         <h2 className="text-xl font-semibold text-gray-900 dark:text-slate-100 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">

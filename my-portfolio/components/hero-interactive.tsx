@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export function HeroInteractive() {
   return (
-    <section className="relative pt-12 pb-6 md:pt-16 md:pb-8">
+    <section className="relative pt-20 pb-8 md:pt-40 md:pb-12">
       {/* Background accents removed to unify global gradient (avoid seam below hero) */}
 
       <div className="relative max-w-6xl mx-auto px-4 text-center">

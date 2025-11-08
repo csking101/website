@@ -19,7 +19,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   if (featured) {
     return (
-      <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden">
+      <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden min-h-[380px]">
         {/* Project Icon/Image */}
         <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-900 dark:to-slate-800 p-8 text-center transition-colors">
           <div className="text-6xl mb-2">{image}</div>
@@ -79,7 +79,7 @@ export default function ProjectCard({
 
   // Regular project card (smaller)
   return (
-    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden">
+    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden min-h-[340px]">
       <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 p-6 text-center transition-colors">
         <div className="text-5xl">{image}</div>
       </div>

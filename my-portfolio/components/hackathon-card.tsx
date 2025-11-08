@@ -22,7 +22,7 @@ export default function HackathonCard({
   demo,
 }: HackathonCardProps) {
   return (
-    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden">
+    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden min-h-[360px]">
       {/* Header with Award Badge */}
       <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-900 dark:to-slate-800 p-6 relative transition-colors">
         <div className="text-5xl mb-3 text-center">{image}</div>

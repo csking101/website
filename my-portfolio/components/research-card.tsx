@@ -22,7 +22,7 @@ export default function ResearchCard({
   tags = [],
 }: ResearchCardProps) {
   return (
-    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden flex flex-col">
+    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden flex flex-col min-h-[340px]">
       <Link href={pdf || "#"} className="flex flex-col h-full">
         <div className="flex flex-col h-full p-6">
           {/* Title */}

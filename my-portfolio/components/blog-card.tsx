@@ -16,7 +16,7 @@ export default function BlogCard({
   slug,
 }: BlogCardProps) {
   return (
-    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden flex flex-col">
+    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 overflow-hidden flex flex-col min-h-[320px]">
       <a href={`/blogs/${slug}`} className="flex flex-col h-full">
         {/* Content */}
         <div className="p-6 flex-grow">
