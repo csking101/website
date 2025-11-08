@@ -1,93 +1,156 @@
 import Link from 'next/link';
+import HeroInteractive from '../components/hero-interactive';
+import { getContentItems } from '../lib/content';
 
 export default function Home() {
+  const blogs = getContentItems('blogs').slice(0, 2);
+  const projects = getContentItems('projects').filter(p => p.metadata.featured).slice(0, 2);
+  const notes = getContentItems('notes').slice(0, 2);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-950 dark:to-slate-900 transition-colors">
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 pt-32 pb-20">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Name */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-12 text-slate-900 dark:text-slate-100 transition-colors">
-            Chinmaya Sahu
-          </h1>
-          
-          {/* Description */}
-          <div className="text-m md:text-2xl text-slate-600 dark:text-slate-400 mb-12 leading-relaxed ">
-            <p>
-              Exploring cloud, machine learning, web development, and everything in between.
-            </p>
-          </div>
+    <main
+      className="relative h-screen w-full overflow-hidden bg-gradient-to-br from-gray-50 via-slate-100 to-gray-200 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100"
+    >
+      {/* Subtle animated backdrop accents */}
+      <div className="pointer-events-none absolute inset-0 hidden md:block">
+        <div className="absolute -top-24 left-1/3 w-72 h-72 rounded-full bg-indigo-300/30 dark:bg-indigo-600/20 blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 -right-24 w-80 h-80 rounded-full bg-pink-300/30 dark:bg-pink-600/20 blur-3xl animate-pulse [animation-delay:400ms]" />
+        <div className="absolute -bottom-32 -left-24 w-72 h-72 rounded-full bg-blue-300/30 dark:bg-blue-700/20 blur-3xl animate-pulse [animation-delay:900ms]" />
+      </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/projects"
-              className="px-8 py-3 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg font-medium hover:opacity-90 transition-opacity"
+      {/* Layout grid (single screen) */}
+      <div className="relative z-10 flex flex-col h-full overflow-hidden">
+        {/* Top hero trimmed */}
+        <div className="flex-none overflow-visible mt-10 md:mt-14 lg:mt-16">
+          <HeroInteractive />
+        </div>
+
+        {/* Mosaic content */}
+        <div
+          className="flex-1 px-6 md:px-12 pb-4 overflow-hidden flex flex-col"
+        >
+          <div className="mt-auto grid gap-4 grid-cols-3 auto-rows-[1fr] p-3">
+            {/* Featured Projects Tile */}
+            <section
+              className="group relative rounded-xl p-4 flex flex-col bg-transparent overflow-hidden hover:shadow-md transition-all"
             >
-              View Projects
-            </Link>
-            <Link
-              href="/blogs"
-              className="px-8 py-3 border-2 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
-            >
-              Read Thoughts
-            </Link>
-            <Link
-              href="/research"
-              className="px-8 py-3 border-2 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
-            >
-              Research
-            </Link>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200 dark:from-indigo-900/40 dark:via-blue-900/30 dark:to-indigo-800/40 transition-opacity" />
+              <header className="relative flex items-center justify-between mb-2">
+                <h3 className="text-lg font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
+                  Featured Projects
+                </h3>
+                <Link
+                  href="/projects"
+                  className="text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                >
+                  All →
+                </Link>
+              </header>
+              <div className="relative space-y-3 text-base">
+                {projects.length === 0 && (
+                  <span className="text-slate-500 dark:text-slate-400">No featured projects.</span>
+                )}
+                {projects.map(p => (
+                  <Link
+                    key={p.slug}
+                    href={`/projects/${p.slug}`}
+                    className="flex items-start gap-3 rounded-lg px-3 py-2 hover:bg-indigo-100/60 dark:hover:bg-indigo-900/40 transition-colors group/item"
+                  >
+                    <span className="text-lg">💡</span>
+                    <div className="flex flex-col">
+                      <span className="font-medium leading-tight group-hover/item:text-indigo-700 dark:group-hover/item:text-indigo-300 line-clamp-1">
+                        {p.metadata.title}
+                      </span>
+                      {p.excerpt && (
+                        <span className="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">
+                          {p.excerpt}
+                        </span>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+
+            {/* Latest Blogs Tile */}
+            <section className="group relative rounded-xl p-4 flex flex-col bg-transparent overflow-hidden hover:shadow-md transition-all">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-fuchsia-50 via-pink-100 to-purple-100 dark:from-fuchsia-900/40 dark:via-pink-900/30 dark:to-purple-900/40 transition-opacity" />
+              <header className="relative flex items-center justify-between mb-0.5">
+                <h3 className="text-lg font-semibold uppercase tracking-wide text-fuchsia-600 dark:text-fuchsia-400">
+                  Thoughts
+                </h3>
+                <Link
+                  href="/blogs"
+                  className="text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-fuchsia-600 dark:hover:text-fuchsia-400 transition-colors"
+                >
+                  More →
+                </Link>
+              </header>
+              <div className="relative space-y-2 text-sm">
+                {blogs.map(b => (
+                  <Link
+                    key={b.slug}
+                    href={`/blogs/${b.slug}`}
+                    className="flex flex-col rounded-md px-3 py-2 hover:bg-pink-100/60 dark:hover:bg-pink-900/40 transition-colors"
+                  >
+                    <span className="font-medium line-clamp-1 group-hover:text-fuchsia-700 dark:group-hover:text-fuchsia-300">
+                      {b.metadata.title}
+                    </span>
+                    <span className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                      <time dateTime={b.metadata.date}>
+                        {new Date(b.metadata.date).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </time>
+                      • {b.metadata.readingTime}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+
+            {/* Notes Tile */}
+            <section className="group relative rounded-xl p-4 flex flex-col bg-transparent overflow-hidden hover:shadow-md transition-all">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-100 dark:from-emerald-900/40 dark:via-teal-900/30 dark:to-cyan-900/40 transition-opacity" />
+              <header className="relative flex items-center justify-between mb-0.5">
+                <h3 className="text-lg font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+                  Notes
+                </h3>
+                <Link
+                  href="/notes"
+                  className="text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                >
+                  All →
+                </Link>
+              </header>
+              <div className="relative grid gap-3 text-base">
+                {notes.map(n => (
+                  <Link
+                    key={n.slug}
+                    href={`/notes/${n.slug}`}
+                    className="group flex items-start gap-3 rounded-md px-3 py-2 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 transition-colors"
+                  >
+                    <span className="text-base">📝</span>
+                    <div className="flex flex-col">
+                      <span className="font-medium line-clamp-1 group-hover:text-emerald-700 dark:group-hover:text-emerald-300">
+                        {n.metadata.title}
+                      </span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400">
+                        {n.metadata.readingTime}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Quick Links Section */}
-      <section className="container mx-auto px-4 pb-20">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
-          {/* Projects Card */}
-          <Link
-            href="/projects"
-            className="group p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
-          >
-            <div className="text-4xl mb-4">💻</div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              Projects & Hackathons
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400">
-              Explore my latest builds, experiments, and hackathon wins.
-            </p>
-          </Link>
-
-          {/* Notes Card */}
-          <Link
-            href="/notes"
-            className="group p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
-          >
-            <div className="text-4xl mb-4">📝</div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              Notes
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400">
-              Quick thoughts, learnings, and technical notes.
-            </p>
-          </Link>
-
-          {/* Travel Card */}
-          <Link
-            href="/travel"
-            className="group p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
-          >
-            <div className="text-4xl mb-4">✈️</div>
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              Travel
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400">
-              Places I&apos;ve been and stories from the road.
-            </p>
-          </Link>
-        </div>
-      </section>
-    </div>
+      {/* Bottom subtle gradient fade (optional aesthetic) */}
+      
+    </main>
   );
 }

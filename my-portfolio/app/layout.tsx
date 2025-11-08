@@ -33,7 +33,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={ibm.className}>
+      <body className={`${ibm.className} overflow-hidden`}>
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>

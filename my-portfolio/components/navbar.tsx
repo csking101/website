@@ -5,10 +5,12 @@ import Image from "next/image";
 import { useState, type ChangeEvent } from "react";
 import { useTheme, type Font } from "./theme-provider";
 import { Home, Pencil, Package, Flag, FlaskConical, FileText, Plane, Utensils, BookOpen, Dumbbell } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggle, font, setFont } = useTheme();
+  const pathname = usePathname();
 
   const navItems = [
     { name: "Home", href: "/", icon: Home },
@@ -44,31 +46,38 @@ export default function Navbar() {
           {/* Desktop Navigation - centered icons */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
             <div className="flex items-center gap-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  aria-label={item.name}
-                  className="group relative inline-flex items-center justify-center"
-                >
-                  <span
-                    className="relative flex items-center justify-center w-10 h-10 rounded-full
-                      text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-100 transition-colors
-                      before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-slate-200/0 before:to-slate-400/0 dark:before:from-slate-700/0 dark:before:to-slate-600/0
-                      group-hover:before:from-slate-200/70 group-hover:before:to-slate-400/40 dark:group-hover:before:from-slate-700/70 dark:group-hover:before:to-slate-600/40
-                      before:blur-md before:opacity-0 group-hover:opacity-100"
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    aria-label={item.name}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`group relative inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-500 rounded-full`}
                   >
-                    <item.icon className="w-5 h-5" />
-                  </span>
-                  <span
-                    className="pointer-events-none absolute top-full mt-2 px-2 py-1 rounded-md bg-white dark:bg-slate-800
-                      text-xs font-medium text-slate-700 dark:text-slate-300 shadow-lg border border-slate-200 dark:border-slate-700
-                      opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all"
-                  >
-                    {item.name}
-                  </span>
-                </Link>
-              ))}
+                    <span
+                      className={`relative flex items-center justify-center w-10 h-10 rounded-full transition-all
+                      ${isActive ? "text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-100"}`}
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span
+                        className={`absolute inset-0 rounded-full bg-gradient-to-br from-indigo-400/0 to-blue-400/0 blur-md transition-all
+                        group-hover:from-indigo-400/40 group-hover:to-blue-400/30
+                        ${isActive ? "from-indigo-500/50 to-blue-500/40" : ""}`}
+                      />
+                    </span>
+                    <span
+                      className={`pointer-events-none absolute top-full mt-2 px-2 py-1 rounded-md backdrop-blur-sm bg-white/80 dark:bg-slate-800/80
+                      text-xs font-medium shadow-lg border border-slate-200/60 dark:border-slate-700/60 transition-all
+                      ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"}`}
+                    >
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
           {/* Desktop Controls right */}
