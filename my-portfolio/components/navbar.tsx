@@ -26,7 +26,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.4)] border-b border-white/30 dark:border-slate-800/50">
+    <nav className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/60 backdrop-blur-lg z-50 shadow-[0_1px_4px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.4)] border-b border-slate-200/60 dark:border-slate-800/50">
       <div className="container mx-auto px-4">
         <div className="relative flex items-center justify-between h-16 w-full md:grid md:grid-cols-[auto_1fr_auto]">
           {/* Logo/Name */}

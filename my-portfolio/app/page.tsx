@@ -32,9 +32,9 @@ export default function Home() {
           <div className="flex-1 grid gap-4 grid-cols-1 md:grid-cols-3 p-3 md:h-full">
             {/* Featured Projects Tile */}
             <section
-              className="group relative rounded-xl p-5 flex flex-col md:h-full md:min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all"
+              className="group relative rounded-xl p-5 flex flex-col md:h-full md:min-h-full bg-white/70 dark:bg-transparent border border-white/60 dark:border-slate-800/40 shadow-[0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-none backdrop-blur-sm overflow-hidden hover:shadow-md transition-all"
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200 dark:from-indigo-900/40 dark:via-blue-900/30 dark:to-indigo-800/40 transition-opacity" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-90 bg-gradient-to-br from-indigo-50 via-blue-50 to-indigo-100 dark:from-indigo-900/40 dark:via-blue-900/30 dark:to-indigo-800/40 transition-opacity" />
               <header className="relative flex items-center justify-between mb-2">
                 <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
                   Featured Projects
@@ -54,7 +54,7 @@ export default function Home() {
                   <Link
                     key={p.slug}
                     href={`/projects/${p.slug}`}
-                    className="flex items-start gap-3 rounded-lg px-3 py-2 hover:bg-indigo-100/60 dark:hover:bg-indigo-900/40 transition-colors group/item"
+                    className="flex items-start gap-3 rounded-lg px-3 py-2 bg-white/40 dark:bg-transparent hover:bg-indigo-100/60 dark:hover:bg-indigo-900/40 transition-colors group/item"
                   >
                     <span className="text-lg">💡</span>
                     <div className="flex flex-col">
@@ -73,8 +73,8 @@ export default function Home() {
             </section>
 
             {/* Latest Blogs Tile */}
-            <section className="group relative rounded-xl p-5 flex flex-col md:h-full md:min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all">
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-fuchsia-50 via-pink-100 to-purple-100 dark:from-fuchsia-900/40 dark:via-pink-900/30 dark:to-purple-900/40 transition-opacity" />
+            <section className="group relative rounded-xl p-5 flex flex-col md:h-full md:min-h-full bg-white/70 dark:bg-transparent border border-white/60 dark:border-slate-800/40 shadow-[0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-none backdrop-blur-sm overflow-hidden hover:shadow-md transition-all">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-90 bg-gradient-to-br from-fuchsia-50 via-pink-50 to-purple-100 dark:from-fuchsia-900/40 dark:via-pink-900/30 dark:to-purple-900/40 transition-opacity" />
               <header className="relative flex items-center justify-between mb-0.5">
                 <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-wide text-fuchsia-600 dark:text-fuchsia-400">
                   Thoughts
@@ -91,7 +91,7 @@ export default function Home() {
                   <Link
                     key={b.slug}
                     href={`/blogs/${b.slug}`}
-                    className="flex flex-col rounded-md px-3 py-2 hover:bg-pink-100/60 dark:hover:bg-pink-900/40 transition-colors"
+                    className="flex flex-col rounded-md px-3 py-2 bg-white/40 dark:bg-transparent hover:bg-pink-100/60 dark:hover:bg-pink-900/40 transition-colors"
                   >
                     <span className="text-lg font-semibold line-clamp-1 group-hover:text-fuchsia-700 dark:group-hover:text-fuchsia-300">
                       {b.metadata.title}
@@ -111,8 +111,8 @@ export default function Home() {
             </section>
 
             {/* Notes Tile */}
-            <section className="group relative rounded-xl p-5 flex flex-col md:h-full md:min-h-full bg-transparent overflow-hidden hover:shadow-md transition-all">
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-100 dark:from-emerald-900/40 dark:via-teal-900/30 dark:to-cyan-900/40 transition-opacity" />
+            <section className="group relative rounded-xl p-5 flex flex-col md:h-full md:min-h-full bg-white/70 dark:bg-transparent border border-white/60 dark:border-slate-800/40 shadow-[0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-none backdrop-blur-sm overflow-hidden hover:shadow-md transition-all">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-90 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100 dark:from-emerald-900/40 dark:via-teal-900/30 dark:to-cyan-900/40 transition-opacity" />
               <header className="relative flex items-center justify-between mb-0.5">
                 <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
                   Notes
@@ -129,7 +129,7 @@ export default function Home() {
                   <Link
                     key={n.slug}
                     href={`/notes/${n.slug}`}
-                    className="group flex items-start gap-3 rounded-md px-3 py-2 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 transition-colors"
+                    className="group flex items-start gap-3 rounded-md px-3 py-2 bg-white/40 dark:bg-transparent hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 transition-colors"
                   >
                     <span className="text-base">📝</span>
                     <div className="flex flex-col">
