@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <main
-      className="relative h-screen w-full overflow-hidden bg-gradient-to-br from-gray-50 via-slate-100 to-gray-200 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100"
+      className="relative min-h-screen w-full md:h-screen overflow-y-auto md:overflow-hidden bg-gradient-to-br from-gray-50 via-slate-100 to-gray-200 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100"
     >
       {/* Subtle animated backdrop accents */}
       <div className="pointer-events-none absolute inset-0 hidden md:block">
@@ -19,7 +19,7 @@ export default function Home() {
       </div>
 
       {/* Layout grid (single screen) */}
-      <div className="relative z-10 flex flex-col h-full overflow-hidden">
+      <div className="relative z-10 flex flex-col md:h-full md:overflow-hidden">
         {/* Top hero trimmed */}
         <div className="flex-none overflow-visible mt-6 md:mt-8 mb-8 md:mb-10 lg:mb-12">
           <HeroInteractive />

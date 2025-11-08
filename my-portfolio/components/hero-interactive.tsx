@@ -15,8 +15,8 @@ export function HeroInteractive() {
           <span className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-yellow-400/0 via-amber-400/20 to-indigo-500/25 dark:from-yellow-300/0 dark:via-amber-300/15 dark:to-indigo-400/25 blur-2xl opacity-70 pointer-events-none -z-10" />
         </h1>
 
-        <p className="mx-auto max-w-2xl text-lg md:text-xl text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
-          Building at the intersection of <span className="font-semibold text-slate-900 dark:text-slate-100">cloud</span>, <span className="font-semibold text-slate-900 dark:text-slate-100">machine learning</span>, <span className="font-semibold text-slate-900 dark:text-slate-100">scalable web</span> and <span className="font-semibold text-slate-900 dark:text-slate-100">developer tooling</span>.
+        <p className="mx-auto max-w-3xl text-lg md:text-xl text-slate-700 dark:text-slate-300 mb-8 md:mb-10 leading-relaxed font-medium">
+          Engineering <span className="font-semibold text-slate-900 dark:text-slate-100">resilient cloud platforms</span>, crafting <span className="font-semibold text-slate-900 dark:text-slate-100">intelligent ML systems</span>, and delivering <span className="font-semibold text-slate-900 dark:text-slate-100">developer tooling</span> that scales — with a focus on <span className="font-semibold text-slate-900 dark:text-slate-100">performance</span>, <span className="font-semibold text-slate-900 dark:text-slate-100">simplicity</span>, and <span className="font-semibold text-slate-900 dark:text-slate-100">human‑centered design</span>.
         </p>
 
         {/* CTA buttons removed */}
